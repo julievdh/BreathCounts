@@ -27,8 +27,28 @@ breathf.cdat$dropped$unmatched.rows
 # search within tips:
 tree$tip.label[grep("Pelecanus", tree$tip.label)]
 
-
 x.vals <- seq(from = min(data$logM), to = max(data$logM), length.out = 100)
 lines(x = x.vals,
       y = coef(m1)["(Intercept)"] +
         coef(m1)["logM"] * x.vals)
+
+## do this with RESP data -- FAKE DATA but want to test tree 
+FAKEbreath <- read.csv("BCountsDataTest.csv")
+plot(log(f) ~ log(M), data = FAKEbreath)
+
+FAKEbreath.cdat <- comparative.data(phy = tree,
+                                 data = FAKEbreath,
+                                 names.col = "Latin_Name")
+m1 <- pgls(log(f) ~ log(M), data = FAKEbreath.cdat, lambda = "ML")
+summary(m1) 
+
+TESTbreath.dat <- read.csv("BreathCounts_PGLSdata")
+
+# to check which tips are not matched:
+FAKEbreath.cdat$dropped$unmatched.rows
+
+x.vals <- seq(from = min(log(FAKEbreath$M)), to = max(log(FAKEbreath$M)), length.out = 100)
+lines(x = x.vals,
+      y = coef(m1)["(Intercept)"] +
+        coef(m1)["log(M)"] * x.vals)
+
