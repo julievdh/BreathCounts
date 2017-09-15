@@ -7,8 +7,8 @@ tree <- read.nexus("nature05634-s2-revised_Lesley.nex")
 tree <- tree[[1]] #Take only the tree with best dates
 
 #Plot the tree
-par(mfrow = c(1,1), mar = c(0,0,0,0) + 0.5)
-plot(tree, show.tip.label = F)
+#par(mfrow = c(1,1), mar = c(0,0,0,0) + 0.5)
+#plot(tree, show.tip.label = F)
 
 #Plot the data
 par(mfrow = c(1,1), mar = c(4,4,0,0) + 0.5)
@@ -25,7 +25,7 @@ summary(m1) # can see here how branch length kappa = 1, how lambda = 0.31, and m
 # to check which tips are not matched:
 breathf.cdat$dropped$unmatched.rows
 # search within tips:
-tree$tip.label[grep("Pelecanus", tree$tip.label)]
+# tree$tip.label[grep("Pelecanus", tree$tip.label)]
 
 x.vals <- seq(from = min(data$logM), to = max(data$logM), length.out = 100)
 lines(x = x.vals,
@@ -33,21 +33,26 @@ lines(x = x.vals,
         coef(m1)["logM"] * x.vals)
 
 ## do this with RESP data -- FAKE DATA but want to test tree 
-FAKEbreath <- read.csv("BCountsDataTest.csv")
-plot(log(f) ~ log(M), data = FAKEbreath)
+TESTbreath <- read.csv("BreathCounts_PGLSdata")
+colnames(TESTbreath) <- c("M","IBI","spp")
+TESTbreath$Latin_Name <- c("Phocoena_phocoena","Tursiops_truncatus",
+                           "Mesoplodon_densirostris","Globicephala_macrorhynchus",
+                           "Ziphius_cavirostris","Globicephala_melas",
+                           "Physeter_catodon")
+plot(log(60/IBI) ~ log(M), data = TESTbreath)
 
-FAKEbreath.cdat <- comparative.data(phy = tree,
-                                 data = FAKEbreath,
+TESTbreath.cdat <- comparative.data(phy = tree,
+                                 data = TESTbreath,
                                  names.col = "Latin_Name")
-m1 <- pgls(log(f) ~ log(M), data = FAKEbreath.cdat, lambda = "ML")
+m1 <- pgls(log(60/IBI) ~ log(M), data = TESTbreath.cdat, lambda = "ML")
 summary(m1) 
 
-TESTbreath.dat <- read.csv("BreathCounts_PGLSdata")
+
 
 # to check which tips are not matched:
-FAKEbreath.cdat$dropped$unmatched.rows
+TESTbreath.cdat$dropped$unmatched.rows
 
-x.vals <- seq(from = min(log(FAKEbreath$M)), to = max(log(FAKEbreath$M)), length.out = 100)
+x.vals <- seq(from = min(log(TESTbreath$M)), to = max(log(TESTbreath$M)), length.out = 100)
 lines(x = x.vals,
       y = coef(m1)["(Intercept)"] +
         coef(m1)["log(M)"] * x.vals)
