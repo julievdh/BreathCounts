@@ -32,6 +32,7 @@ lines(x = x.vals,
       y = coef(m1)["(Intercept)"] +
         coef(m1)["logM"] * x.vals)
 
+
 ## do this with RESP data -- FAKE DATA but want to test tree 
 TESTbreath <- read.csv("BreathCounts_PGLSdata")
 colnames(TESTbreath) <- c("M","IBI","spp")
@@ -39,21 +40,38 @@ TESTbreath$Latin_Name <- c("Phocoena_phocoena","Tursiops_truncatus",
                            "Mesoplodon_densirostris","Globicephala_macrorhynchus",
                            "Ziphius_cavirostris","Globicephala_melas",
                            "Physeter_catodon")
-plot(log(60/IBI) ~ log(M), data = TESTbreath)
 
 TESTbreath.cdat <- comparative.data(phy = tree,
                                  data = TESTbreath,
                                  names.col = "Latin_Name")
+# fit PGLS to breath data
 m1 <- pgls(log(60/IBI) ~ log(M), data = TESTbreath.cdat, lambda = "ML")
 summary(m1) 
 
+# fit alternative models
+m05 <- pgls(log(60/IBI) ~ offset(-0.5*log(M)), data = TESTbreath.cdat, lambda = 1)
+m25 <- pgls(log(60/IBI) ~ offset(-0.25*log(M)), data = TESTbreath.cdat, lambda = 1)
 
+anova(m1, m05, m25)
+AIC(m1, m05, m25)
 
 # to check which tips are not matched:
 TESTbreath.cdat$dropped$unmatched.rows
 
 x.vals <- seq(from = min(log(TESTbreath$M)), to = max(log(TESTbreath$M)), length.out = 100)
+
+plot(log(60/IBI) ~ log(M), data = TESTbreath)
 lines(x = x.vals,
       y = coef(m1)["(Intercept)"] +
         coef(m1)["log(M)"] * x.vals)
+# add lines for 0.5 and 0.25 
+lines(x = x.vals,
+      y = 20*coef(m05)["(Intercept)"] +
+        -0.5 * x.vals, lty = 2)
+lines(x = x.vals,
+      y = 10*coef(m25)["(Intercept)"] +
+        -0.25 * x.vals, lty = 2)
+
+# what is the variance of our estimate? 
+
 
