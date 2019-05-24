@@ -31,16 +31,22 @@ for fl = 1:length(files)
     if     strfind(files(fl).tag,'ba') == 1 % minke whale
         files(fl).spp = 10;
     end
-    if     strfind(files(fl).tag,'mn') == 1 % humpback whale
+        if     strfind(files(fl).tag,'gg') == 1 % risso's dolphin
         files(fl).spp = 11;
     end
-    %if     strfind(files(fl).tag,'eg') == 1 % right whale
-    %    files(fl).spp = 12;
-    %end
-    if     strfind(files(fl).tag,'bp') == 1 % fin whale
+    if     strfind(files(fl).tag,'mn') == 1 % humpback whale
         files(fl).spp = 12;
     end
-    if     strfind(files(fl).tag,'bw') == 1 % blue whale
+        if     strfind(files(fl).tag,'er') == 1 % gray whale
         files(fl).spp = 13;
+    end
+    if     strfind(files(fl).tag,'eg') == 1 % right whale
+        files(fl).spp = 14;
+    end
+    if     strfind(files(fl).tag,'bp') == 1 % fin whale
+        files(fl).spp = 15;
+    end
+    if     strfind(files(fl).tag,'bw') == 1 % blue whale
+        files(fl).spp = 16;
     end
 end
