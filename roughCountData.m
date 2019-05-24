@@ -2,7 +2,6 @@ clear, close all
 
 % load count data from tags
 load('countdata')
-% files = files(1:99); % if include mysticetes, relax this.
 
 for i = 1:length(files)
     if isempty(files(i).tdiff) == 0
