@@ -38,14 +38,19 @@ for fl = 1:length(files)
     if     strfind(files(fl).tag,'mn') == 1 % humpback whale
         files(fl).col = c(cind(files(fl).spp),:);
     end
-    %if     strfind(files(fl).tag,'eg') == 1 % right whale
-    %    files(fl).col = c(cind(files(fl).spp),:);
-    %end
+    if     strfind(files(fl).tag,'eg') == 1 % right whale
+        files(fl).col = c(cind(files(fl).spp),:);
+    end
     if     strfind(files(fl).tag,'bp') == 1 % fin whale
         files(fl).col = c(cind(files(fl).spp),:);
     end
     if     strfind(files(fl).tag,'bw') == 1 % blue whale
         files(fl).col = c(cind(files(fl).spp),:);
     end
-    
+    if     strfind(files(fl).tag,'gg') == 1 % risso's
+        files(fl).col = c(cind(files(fl).spp),:);
+    end
+    if     strfind(files(fl).tag,'er') == 1 % gray whale
+        files(fl).col = c(cind(files(fl).spp),:);
+    end
 end
