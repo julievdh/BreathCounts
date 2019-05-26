@@ -53,22 +53,49 @@ lines(x = x.vals,
 
 ## do this with RESP data -- FAKE DATA but want to test tree 
 TESTbreath <- read.csv("/Users/julievanderhoop/Documents/MATLAB/BreathCounts/BreathCounts_PGLSdata")
-colnames(TESTbreath) <- c("M","IBI","spp")
-TESTbreath$Latin_Name <- c("Phocoena_phocoena","Tursiops_truncatus",
-                           "Mesoplodon_densirostris","Globicephala_macrorhynchus",
-                           "Ziphius_cavirostris","Globicephala_melas",
-                           "Physeter_catodon")
+colnames(TESTbreath) <- c("Mb","mnIBI","mdIBI","spp","mnFreq")
+TESTbreath$Latin_Name <- c("Phocoena_phocoena",
+                           "Tursiops_truncatus",
+                           "Globicephala_macrorhynchus",
+                           "Mesoplodon_densirostris",
+                           "Globicephala_melas",
+                           "Ziphius_cavirostris",
+                           "Physeter_catodon",
+                           "Hyperoodon_ampullatus",
+                           "Delphinapterus_leucas",
+                           "Balaenoptera_acutorostrata",
+                           "Grampus_griseus",
+                           "Megaptera_novaeangliae",
+                           "Eschrichtius_robustus",
+                           "Eubalaena_glacialis",
+                           "Balaenoptera_physalus",
+                           "Balaenoptera_musculus")
 
 TESTbreath.cdat <- comparative.data(phy = tree,
                                  data = TESTbreath,
                                  names.col = "Latin_Name")
+
+# do some plotting 
+branches <- TESTbreath.cdat$phy$edge
+species <- TESTbreath.cdat$phy$tip.label
+brlength <- TESTbreath.cdat$phy$edge.length
+nodes <- TESTbreath.cdat$phy$Nnode
+
+mycol<-c("blue", "blue", "blue", "red", "red", "red","blue","red") # dummy
+p1 <- plot(TESTbreath.cdat$phy, adj=0, label.offset=1.75, lwd=2)
+tiplabels(pch=21, col="black", adj=1, bg=mycol, cex=2)
+#nodelabels()
+#tiplabels()
+#rot.phy <- rotate(TESTbreath.cdat$phy, node=18)
+#ladder.phy <- ladderize(TESTbreath.cdat$phy)
+
 # fit PGLS to breath data
-m1 <- pgls(log(60/IBI) ~ log(M), data = TESTbreath.cdat, lambda = "ML")
+m1 <- pgls(log(60/mnIBI) ~ log(Mb), data = TESTbreath.cdat, lambda = "ML")
 summary(m1) 
 
 # fit alternative models
-m05 <- pgls(log(60/IBI) ~ offset(-0.5*log(M)), data = TESTbreath.cdat, lambda = 1)
-m25 <- pgls(log(60/IBI) ~ offset(-0.25*log(M)), data = TESTbreath.cdat, lambda = 1)
+m05 <- pgls(log(60/mnIBI) ~ offset(-0.5*log(Mb)), data = TESTbreath.cdat, lambda = 1)
+m25 <- pgls(log(60/mnIBI) ~ offset(-0.25*log(Mb)), data = TESTbreath.cdat, lambda = 1)
 
 anova(m1, m05, m25)
 AIC(m1, m05, m25)
@@ -76,9 +103,9 @@ AIC(m1, m05, m25)
 # to check which tips are not matched:
 TESTbreath.cdat$dropped$unmatched.rows
 
-x.vals <- seq(from = min(log(TESTbreath$M)), to = max(log(TESTbreath$M)), length.out = 100)
+x.vals <- seq(from = min(log(TESTbreath$Mb)), to = max(log(TESTbreath$Mb)), length.out = 100)
 
-plot(log(60/IBI) ~ log(M), data = TESTbreath)
+plot(log(60/mnIBI) ~ log(Mb), data = TESTbreath)
 lines(x = x.vals,
       y = coef(m1)["(Intercept)"] +
         coef(m1)["log(M)"] * x.vals)
@@ -90,19 +117,19 @@ lines(x = x.vals,
       y = 10*coef(m25)["(Intercept)"] +
         -0.25 * x.vals, lty = 2)
 
-
 # plot mortola data and ours
 png('Mortola_NonRuminantsCetaceans.png', width = 8, height = 6, units = "in", res = 300)
 plot((f) ~ (M), data = nonrum, log = "xy", 
      cex = 1, cex.axis = 1.5, 
-     xlim = c(0.01,50000), ylim = c(0.1, 200))
+     xlim = c(0.01,80000), ylim = c(0.1, 200))
 x.vals <- seq(from = min(nonrum$M), to = max(nonrum$M), length.out = 100)
 lines(x = x.vals,
-      y = exp(coef(m)["(Intercept)"]) * x.vals^coef(m)["log(M)"] )
-points(60/IBI ~ M, data = TESTbreath, pch = 19, cex = 1.5)
-m1 <- lm(log(60/IBI) ~ log(M), data = TESTbreath)
-x.vals <- seq(from = min(TESTbreath$M), to = max(TESTbreath$M), length.out = 100)
+      y = exp(coef(m)["(Intercept)"]) * x.vals^coef(m)["log(Mb)"] )
+points(60/mnIBI ~ Mb, data = TESTbreath, pch = 19, cex = 1.5)
+m1 <- lm(log(60/mnIBI) ~ log(Mb), data = TESTbreath)
+x.vals <- seq(from = min(TESTbreath$Mb), to = max(TESTbreath$Mb), length.out = 100)
 lines(x = x.vals,
-      y = exp(coef(m1)["(Intercept)"]) * x.vals^coef(m1)["log(M)"] )
+      y = exp(coef(m1)["(Intercept)"]) * x.vals^coef(m1)["log(Mb)"] )
 
 dev.off()
+
