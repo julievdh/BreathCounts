@@ -53,7 +53,7 @@ lines(x = x.vals,
 
 ## do this with RESP data -- FAKE DATA but want to test tree 
 TESTbreath <- read.csv("/Users/julievanderhoop/Documents/MATLAB/BreathCounts/BreathCounts_PGLSdata")
-colnames(TESTbreath) <- c("Mb","mnIBI","mdIBI","spp","mnFreq")
+colnames(TESTbreath) <- c("Mb","mnIBI","mdIBI","spp","mnFreq","n")
 TESTbreath$Latin_Name <- c("Phocoena_phocoena",
                            "Tursiops_truncatus",
                            "Globicephala_macrorhynchus",
@@ -81,13 +81,16 @@ species <- TESTbreath.cdat$phy$tip.label
 brlength <- TESTbreath.cdat$phy$edge.length
 nodes <- TESTbreath.cdat$phy$Nnode
 
-mycol<-c("blue", "blue", "blue", "red", "red", "red","blue","red") # dummy
-p1 <- plot(TESTbreath.cdat$phy, adj=0, label.offset=1.75, lwd=2)
-tiplabels(pch=21, col="black", adj=1, bg=mycol, cex=2)
+# mycol<-c("blue", "blue", "blue", "red", "red", "red","blue","red") # dummy
+plot(TESTbreath.cdat$phy, adj=0, label.offset=5, lwd=2)
+# tiplabels(pch=21, col="black", adj=1, bg=mycol, cex=2)
+tiplabels(TESTbreath.cdat$data$n,frame = "none", adj = -0.2)
 #nodelabels()
 #tiplabels()
 #rot.phy <- rotate(TESTbreath.cdat$phy, node=18)
 #ladder.phy <- ladderize(TESTbreath.cdat$phy)
+
+
 
 # fit PGLS to breath data
 m1 <- pgls(log(60/mnIBI) ~ log(Mb), data = TESTbreath.cdat, lambda = "ML")
@@ -99,6 +102,23 @@ m25 <- pgls(log(60/mnIBI) ~ offset(-0.25*log(Mb)), data = TESTbreath.cdat, lambd
 
 anova(m1, m05, m25)
 AIC(m1, m05, m25)
+
+# get residuals from model
+d1 <- data.frame(order = c(1:16),id=TESTbreath.cdat$phy$tip.label) # these are the tip order
+# but the data go in with a different order, so have to match data to tips 
+mtch <- match(TESTbreath$Latin_Name,d1$id) # find matches between data frames
+for (i in 1:16){
+  TESTbreath$residuals[mtch == i] <- m1$residuals[i] # assign weight based on match ID
+TESTbreath$order[mtch == i] <- d1$order[i]
+}
+
+# plotting
+# library(phytools)
+#phytools::plotTree.barplot(TESTbreath.cdat$phy,TESTbreath$residuals,
+#        args.barplot=list(col=sapply(TESTbreath$residuals,
+#        function(x) if(x>=0) "blue" else "red"),
+#        xlim=c(-1.2,1.2)))
+# phytools::plotTree.barplot(TESTbreath.cdat$phy,TESTbreath$residuals, xlim=c(-1.2,1.2))
 
 # to check which tips are not matched:
 TESTbreath.cdat$dropped$unmatched.rows
