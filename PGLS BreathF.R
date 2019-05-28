@@ -36,8 +36,8 @@ breathf.cdat <- comparative.data(phy = tree,
                               data = data,
                               names.col = "Latin_Name")
 m1 <- pgls(log(f) ~ log(M), data = breathf.cdat, lambda = "ML")
-summary(m1) # can see here how branch length kappa = 1, how lambda = 0.31, and model equation
-# log(Ms) = -1.21 +1.04 log(M) + 0.02[log*M)]^2 (slightly different from manuscript result)
+summary(m1) # can see here how branch length kappa = 1, how lambda = 0.898, and model equation
+# log(IBI) = 3.8 + 0.33*log(M)
 
 # to check which tips are not matched:
 breathf.cdat$dropped$unmatched.rows
@@ -51,10 +51,10 @@ lines(x = x.vals,
         coef(m1)["logM"] * x.vals)
 
 
-## do this with RESP data -- FAKE DATA but want to test tree 
-TESTbreath <- read.csv("/Users/julievanderhoop/Documents/MATLAB/BreathCounts/BreathCounts_PGLSdata")
-colnames(TESTbreath) <- c("Mb","mnIBI","mdIBI","spp","mnFreq","n")
-TESTbreath$Latin_Name <- c("Phocoena_phocoena",
+## do this with resp data output from matlab roughCountData.m 
+breathdat <- read.csv("/Users/julievanderhoop/Documents/MATLAB/BreathCounts/BreathCounts_PGLSdata")
+colnames(breathdat) <- c("Mb","mnIBI","mdIBI","spp","mnFreq","n")
+breathdat$Latin_Name <- c("Phocoena_phocoena",
                            "Tursiops_truncatus",
                            "Globicephala_macrorhynchus",
                            "Mesoplodon_densirostris",
@@ -71,20 +71,22 @@ TESTbreath$Latin_Name <- c("Phocoena_phocoena",
                            "Balaenoptera_physalus",
                            "Balaenoptera_musculus")
 
-TESTbreath.cdat <- comparative.data(phy = tree,
-                                 data = TESTbreath,
+# subset into original n = 7
+original <- subset(breathdat, spp <= 7)
+# subset into odontocetes
+odont <- subset(breathdat, spp <= 9 | spp == 11)
+# subset into mysticetes
+mysti <- subset(breathdat, spp == 10 | spp >= 12)
+  
+breath.cdat <- comparative.data(phy = tree,
+                                 data = breathdat,
                                  names.col = "Latin_Name")
-
-# do some plotting 
-branches <- TESTbreath.cdat$phy$edge
-species <- TESTbreath.cdat$phy$tip.label
-brlength <- TESTbreath.cdat$phy$edge.length
-nodes <- TESTbreath.cdat$phy$Nnode
+species <- breath.cdat$phy$tip.label
 
 # mycol<-c("blue", "blue", "blue", "red", "red", "red","blue","red") # dummy
-plot(TESTbreath.cdat$phy, adj=0, label.offset=5, lwd=2)
+plot(breath.cdat$phy, adj=0, label.offset=5, lwd=2)
 # tiplabels(pch=21, col="black", adj=1, bg=mycol, cex=2)
-tiplabels(TESTbreath.cdat$data$n,frame = "none", adj = -0.2)
+tiplabels(breath.cdat$data$n,frame = "none", adj = -0.2)
 #nodelabels()
 #tiplabels()
 #rot.phy <- rotate(TESTbreath.cdat$phy, node=18)
@@ -104,12 +106,12 @@ anova(m1, m05, m25)
 AIC(m1, m05, m25)
 
 # get residuals from model
-d1 <- data.frame(order = c(1:16),id=TESTbreath.cdat$phy$tip.label) # these are the tip order
+d1 <- data.frame(order = c(1:16),id=breath.cdat$phy$tip.label) # these are the tip order
 # but the data go in with a different order, so have to match data to tips 
-mtch <- match(TESTbreath$Latin_Name,d1$id) # find matches between data frames
+mtch <- match(breathdat$Latin_Name,d1$id) # find matches between data frames
 for (i in 1:16){
-  TESTbreath$residuals[mtch == i] <- m1$residuals[i] # assign weight based on match ID
-TESTbreath$order[mtch == i] <- d1$order[i]
+  breathdat$residuals[mtch == i] <- m1$residuals[i] # assign weight based on match ID
+breathdat$order[mtch == i] <- d1$order[i]
 }
 
 # plotting
@@ -121,7 +123,7 @@ TESTbreath$order[mtch == i] <- d1$order[i]
 # phytools::plotTree.barplot(TESTbreath.cdat$phy,TESTbreath$residuals, xlim=c(-1.2,1.2))
 
 # to check which tips are not matched:
-TESTbreath.cdat$dropped$unmatched.rows
+breath.cdat$dropped$unmatched.rows
 
 x.vals <- seq(from = min(log(TESTbreath$Mb)), to = max(log(TESTbreath$Mb)), length.out = 100)
 
