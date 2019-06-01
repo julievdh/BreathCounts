@@ -224,7 +224,7 @@ files(fl).tag = 'hp15_243a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'F';
 files(fl).lnth = 94;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000081*files(fl).lnth^2.67; % kg estimate
 
 fl = 66; 
 files(fl).tag = 'hp15_267a';
@@ -871,14 +871,14 @@ files(fl).lnth = 800;
 files(fl).wt = 9000; % kg estimate, Jefferson et al. 1993
 
 fl = 106; 
-files(fl).tag = 'ba-130213-B009';
+files(fl).tag = 'bb-130213-B009'; % BB - ANTARCTIC MINKE
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 800;
 files(fl).wt = 9000; % kg estimate, Jefferson et al. 1993
 
 fl = 107; 
-files(fl).tag = 'ba-130215-B008';
+files(fl).tag = 'bb-130215-B008'; % BB - ANTARCTIC MINKE
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 800;
@@ -1014,19 +1014,45 @@ files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
 
 %% grey whales - PS, JG, JC
 
+fl = 126; 
+files(fl).tag = 'er150417-3';
+files(fl).lnth = 12.76; % length estimate from Selina Agbayani 
+files(fl).wt = 19924; % kg estimate from Selina Agbayani @ UBC
+files(fl).age = 25; % seen since 1990
 
-files(126).tag = 'er150417-3';
-files(127).tag = 'er160325-22';
-files(128).tag = 'er160406-21';
-files(129).tag = 'er160406-22';
-files(130).tag = 'er160407-25';
-files(131).tag = 'er160505-22';
+fl = 127; 
+files(fl).tag = 'er160325-22';
+files(fl).lnth = 12.53; % length estimate from Selina Agbayani 
+files(fl).wt = 19031; % kg estimate from Selina Agbayani @ UBC
+files(fl).age = 16; 
+
+fl = 128; 
+files(fl).tag = 'er160406-21';
+files(fl).lnth = 12.53; % length estimate from Selina Agbayani 
+files(fl).wt = 19031; % kg estimate from Selina Agbayani @ UBC
+files(fl).age = 16; 
+
+fl = 129; 
+files(fl).tag = 'er160406-22';
+files(fl).lnth = 12.8; % length estimate from Selina Agbayani 
+files(fl).wt = 19970; % kg estimate from Selina Agbayani @ UBC
+files(fl).age = 26; 
+
+fl = 130; 
+files(fl).tag = 'er160407-25';
+files(fl).lnth = 12.57; % length estimate from Selina Agbayani 
+files(fl).wt = 19211; % kg estimate from Selina Agbayani @ UBC
+files(fl).age = 17; 
+
+fl = 131; 
+files(fl).tag = 'er160505-22';
+files(fl).lnth = 12.53; % length estimate from Selina Agbayani 
+files(fl).wt = 19031; % kg estimate from Selina Agbayani @ UBC
+files(fl).age = 16; 
 
 for fl = 126:131
 files(fl).path = '/Users/julievanderhoop/Dropbox (Personal)/tag/audit';
 files(fl).sex = '';
-files(fl).lnth = NaN; % looking for age-length curve
-files(fl).wt = 27000; % kg estimate? emailed Selina Agbayani@ UBC
 end
 
 %% right whales - DPN, SP
@@ -1084,6 +1110,26 @@ files(fl).path = '/Users/julievanderhoop/Dropbox (Personal)/tag/audit';
 files(fl).lnth = NaN; % looking for age-length curve
 files(fl).wt = 2000; % kg estimate
 end
+
+%% antarctic minkes
+
+files(145).tag = 'bb180125-30';
+files(146).tag = 'bb180227-45';
+files(147).tag = 'bb180228-42';
+files(148).tag = 'bb180304-40';
+files(149).tag = 'bb180305-42b';
+files(150).tag = 'bb190224-52';
+files(151).tag = 'bb190225-55';
+files(152).tag = 'bb190228-55b';
+files(153).tag = 'bb190304-18';
+files(154).tag = 'bb190309-52';
+
+for fl = 145:154
+files(fl).path = '/Users/julievanderhoop/Dropbox (Personal)/tag/audit';
+files(fl).lnth = 800; % looking for age-length curve
+files(fl).wt = 9000; % kg estimate
+end
+
 
 %%
 % cd \\uni.au.dk\Users\au575532\Documents\MATLAB\BreathSounds\BreathCounts

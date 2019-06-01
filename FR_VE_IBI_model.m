@@ -22,14 +22,14 @@ applyLungMass
 % loglog(sp_wt,sp_IBI,'o');
 figure(19), clf, hold on
 for i = 1:length(files)
-    plot(wt(i),mnf(i),'ko','MarkerFaceColor',files(i).col)
+    scatter(wt(i),mnf(i),'ko','MarkerFaceColor',files(i).col,'markerfacealpha',0.5)
 end
 
-plot(sp_wt,sp_mnf,'ko','markerfacecolor','k')
+plot(sp_wt,sp_mnf,'ko','markerfacecolor','k','markerSize',9)
 plot([10 100000],[1 1],':')
 xlabel('Body Mass (kg)'), ylabel('Mean Ventilation Frequency (/min)')
 set(gca,'xscale','log','yscale','log')
-adjustfigurefont
+adjustfigurefont('Helvetica',14)
 print -dpng -r300 BreathCounts_meanF
 
 VE = mnf.*TLC; % fR * VT
@@ -54,13 +54,13 @@ end
 set(gca,'xscale','log')
 xlabel('Body Mass (kg)'), ylabel('TLC/Body Mass')
 adjustfigurefont
-print -dpng -r300 BreathCounts_LungScaling
+% print -dpng -r300 BreathCounts_LungScaling
 
 %% plot yy with VE and IBI
 figure(92), clf
 loglog(sp_wt,sp_IBI,'o'), hold on
 loglog(sp_wt,a3*sp_wt.^b3,'k-')
-loglog(sp_wt,sp_mnf.*sp_TLC,'o')
+loglog(sp_wt,sp_mnf.*sp_TLC,'v')
 loglog(sp_wt,10^(pVE(2))*sp_wt.^(pVE(1)),'k--')
 
 % get fit
