@@ -84,9 +84,12 @@ breath.cdat <- comparative.data(phy = tree,
 species <- breath.cdat$phy$tip.label
 
 # mycol<-c("blue", "blue", "blue", "red", "red", "red","blue","red") # dummy
+png('BreathCounts_phylo_full.png', width = 8, height = 6, units = "in", res = 300)
 plot(breath.cdat$phy, adj=0, label.offset=5, lwd=2)
 # tiplabels(pch=21, col="black", adj=1, bg=mycol, cex=2)
 tiplabels(breath.cdat$data$n,frame = "none", adj = -0.2)
+dev.off()
+
 #nodelabels()
 #tiplabels()
 #rot.phy <- rotate(TESTbreath.cdat$phy, node=18)
