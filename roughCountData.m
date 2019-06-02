@@ -4,34 +4,7 @@ clear, close all
 load('countdata')
 assignSpp % assign species codes 
 
-for i = 1:length(files)
-    if isempty(files(i).tdiff) == 0
-        % calculate duration of resp audit in hours
-        files(i).dur = (files(i).resp(end) - files(i).resp(1))/3600;
-        if files(i).dur >= 6
-            mnIBI(i) = mean(files(i).tdiff); % mean IBI
-            stdIBI(i) = std(files(i).tdiff); % STD
-            mdIBI(i) = median(files(i).tdiff); % median IBI
-            modeIBI(i) = mode(files(i).tdiff); % mode
-            
-            % TLC(i) = 0.135*(files(i).wt).^0.92; % estimate from Kooyman
-            % if isfield(files(i),'swim_ct') == 1
-            mnf(i) = 60/mnIBI(i); % mean frequency
-            mdf(i) = 60/mdIBI(i); % median frequency
-            % end
-        else
-            mnIBI(i) = NaN; % mean IBI
-            stdIBI(i) = NaN; % STD
-            mdIBI(i) = NaN; % median IBI
-            modeIBI(i) = NaN; % mode
-            files(i).dur = NaN; % nan these out so they're not used in the calcs below
-            files(i).wt = NaN; 
-            files(i).spp = NaN; 
-        end
-        else files(i).dur = NaN;
-            files(i).spp = NaN; 
-    end
-end
+extractIBI % extract values from files struct
 
 wt = [files(:).wt];
 dur = [files(:).dur];
@@ -51,6 +24,8 @@ for i = unique(spp(~isnan(spp)))
     sp_ct(i) = length(find(spp == i)); 
     sp_ind(i) = find(spp == i,1); % find first appearance of species index
 end
+
+tab = table(sp_ct',sp_wt',sp_sdwt',sp_dur')
 
 % order for plotting for phylogeny
 phyorder = [16,15,12,11,14,9,13,8,10,7,5,6,1,2,3,4];
