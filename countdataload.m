@@ -5,7 +5,6 @@ th = 1; % second threshold between breaths
 % tt14_126a
 files(1).tag = 'tt14_126a';
 files(1).path = 'C:\tag\audit';
-res = driveletter('Sarasota');
 files(1).lnth = 274; % length in cm
 files(1).wt = 256; % weight in kg
 
@@ -154,105 +153,113 @@ files(fl).sex = 'M';
 files(9).tag = 'hp12_272a';
 files(9).path = 'C:\tag\audit';
 files(9).lnth = 122;
-files(9).wt = 0.000081*files(9).lnth^2.67; % kg estimate
+files(9).sex = 'F'; 
+files(9).wt = 0.000083*files(9).lnth^2.67; % kg estimate
 
 files(10).tag = 'hp12_293a';
 files(10).path = 'C:\tag\audit';
 files(10).lnth = 163;
-files(10).wt = 0.000081*files(10).lnth^2.67;; % kg estimate
+files(10).sex = 'F'; 
+files(10).wt = 0.000083*files(10).lnth^2.67; % kg estimate
 
 files(11).tag = 'hp13_102a';
 files(11).path = 'C:\tag\audit';
 files(11).lnth = 114;
-files(11).wt = 0.000081*files(11).lnth^2.67;; % kg estimate
+files(11).sex = 'M'; 
+files(11).wt = 0.000063*files(11).lnth^2.25; % kg estimate Rojano Donate 2018
 
 files(12).tag = 'hp13_145a';
 files(12).path = 'C:\tag\audit';
 files(12).lnth = 135;
-files(12).wt = 0.000081*files(12).lnth^2.67;; % kg estimate
+files(12).sex = 'F'; 
+files(12).wt = 0.000083*files(12).lnth^2.67; % kg estimate
 
 files(13).tag = 'hp13_170a';
 files(13).path = 'C:\tag\audit';
 files(13).lnth = 123;
-files(13).wt = 0.000081*files(13).lnth^2.67;; % kg estimate
+files(13).sex = 'M'; 
+files(13).wt = 0.000063*files(13).lnth^2.25; % kg estimate
 
 files(14).tag = 'hp14_226b';
 files(14).path = 'C:\tag\audit';
 files(14).lnth = 126;
-files(14).wt = 0.000081*files(14).lnth^2.67;; % kg estimate
+files(14).sex = 'M';
+files(14).wt = 0.000063*files(14).lnth^2.25; % kg estimate
 
 files(15).tag = 'hp15_117a';
 files(15).path = 'C:\tag\audit';
 files(15).lnth = 170;
-files(15).wt = 0.000081*files(15).lnth^2.67;; % kg estimate
+files(15).sex = 'F'; 
+files(15).wt = 0.000083*files(15).lnth^2.67; % kg estimate
 
 files(16).tag = 'hp16_264a';
 files(16).path = 'C:\tag\audit';
 files(16).lnth = 163;
-files(16).wt = 0.000081*files(16).lnth^2.67;; % kg estimate
+files(16).sex = 'F'; 
+files(16).wt = 0.000083*files(16).lnth^2.67; % kg estimate
 
 fl = 61; 
 files(fl).tag = 'hp14_305a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'M';
 files(fl).lnth = 133;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000063*files(fl).lnth^2.25; % kg estimate
 
 fl = 62; 
 files(fl).tag = 'hp15_096a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'M';
 files(fl).lnth = 128;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000063*files(fl).lnth^2.25; % kg estimate
 
 fl = 63; 
 files(fl).tag = 'hp15_160a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'F';
 files(fl).lnth = 145;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000083*files(fl).lnth^2.67; % kg estimate
 
 fl = 64; 
 files(fl).tag = 'hp15_218a';
 files(fl).path = 'C:\tag\audit';
 files(fl).lnth = 156;
 files(fl).sex = 'F';
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000083*files(fl).lnth^2.67; % kg estimate
 
 fl = 65; 
 files(fl).tag = 'hp15_243a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'F';
 files(fl).lnth = 94;
-files(fl).wt = 0.000081*files(fl).lnth^2.67; % kg estimate
+files(fl).wt = 0.000083*files(fl).lnth^2.67; % kg estimate
 
 fl = 66; 
 files(fl).tag = 'hp15_267a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'M';
 files(fl).lnth = 121;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000063*files(fl).lnth^2.25; % kg estimate
 
 fl = 67; 
 files(fl).tag = 'hp16_316a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'M';
 files(fl).lnth = 113;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000063*files(fl).lnth^2.25; % kg estimate
 
 fl = 68; 
 files(fl).tag = 'hp17_115a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'M';
 files(fl).lnth = 134;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000063*files(fl).lnth^2.25; % kg estimate
 
 fl = 69; 
 files(fl).tag = 'hp17_267a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'M';
 files(fl).lnth = 121;
-files(fl).wt = 0.000081*files(fl).lnth^2.67;; % kg estimate
+files(fl).wt = 0.000063*files(fl).lnth^2.25; % kg estimate
 
 %% Short-finned pilot whales
 fl = 18; 
