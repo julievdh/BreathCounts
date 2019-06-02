@@ -257,6 +257,7 @@ files(fl).wt = 0.00063*files(fl).lnth^2.25; % kg estimate
 fl = 69; 
 files(fl).tag = 'hp17_267a';
 files(fl).path = 'C:\tag\audit';
+
 files(fl).sex = 'M';
 files(fl).lnth = 121;
 files(fl).wt = 0.00063*files(fl).lnth^2.25; % kg estimate
@@ -882,14 +883,14 @@ files(fl).tag = 'bb-130213-B009'; % BB - ANTARCTIC MINKE
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 800;
-files(fl).wt = 9000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 6850; % kg estimate, Konishi 2006
 
 fl = 107; 
 files(fl).tag = 'bb-130215-B008'; % BB - ANTARCTIC MINKE
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 800;
-files(fl).wt = 9000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 6850; % kg estimate, Konishi 2006
 
 %% blue whales - Paolo, Jeremy
 fl = 108; 
@@ -1133,8 +1134,8 @@ files(154).tag = 'bb190309-52';
 
 for fl = 145:154
 files(fl).path = '/Users/julievanderhoop/Dropbox (Personal)/tag/audit';
-files(fl).lnth = 800; % looking for age-length curve
-files(fl).wt = 9000; % kg estimate
+files(fl).lnth = 800; % 
+files(fl).wt = 6850; % kg estimate, Konishi 2006
 end
 
 
