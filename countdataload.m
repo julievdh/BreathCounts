@@ -79,7 +79,8 @@ files(56).path = 'C:\tag\audit';
 files(56).lnth = NaN; % large male
 files(56).wt = 1500; % kg estimate, Jefferson et al. 1993
 files(56).sex = 'M';
-
+bw
+bw
 files(57).tag = 'gm15_265a';
 files(57).path = 'C:\tag\audit';
 files(57).lnth = NaN; % large male, 
@@ -265,7 +266,7 @@ files(fl).wt = 0.00063*files(fl).lnth^2.25; % kg estimate
 %% Short-finned pilot whales
 fl = 18; 
 files(fl).tag = 'pw03_308c';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 addpath(files(fl).path)
 files(fl).lnth = NaN;
 files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
@@ -276,7 +277,7 @@ files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAU
 
 fl = 19;
 files(fl).tag = 'pw04_299c';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
 files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
 eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
@@ -288,7 +289,7 @@ clear RESP resp
 
 fl = 20;
 files(fl).tag = 'pw03_306b';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
 files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
 eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
@@ -298,72 +299,72 @@ files(fl).tdiff = diff(sort(vertcat(RESP,blowsafterlastdive))); clear RESP RESPA
 
 fl = 21;
 files(fl).tag = 'pw03_306d';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
-eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
-files(fl).resp = sort(unique(RESP)); 
-files(fl).tdiff = diff(files(fl).resp); 
-files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP 
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
+% eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
+% files(fl).resp = sort(unique(RESP)); 
+% files(fl).tdiff = diff(files(fl).resp); 
+% files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
 
 fl = 22;
 files(fl).tag = 'pw03_307a';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
-eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
-files(fl).resp = sort(unique(RESP)); 
-files(fl).tdiff = diff(files(fl).resp); 
-files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
+% eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
+% files(fl).resp = sort(unique(RESP)); 
+% files(fl).tdiff = diff(files(fl).resp); 
+% files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
 
 fl = 23;
 files(fl).tag = 'pw03_307b';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
-eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
-files(fl).resp = sort(unique(RESP)); 
-files(fl).tdiff = diff(files(fl).resp); 
-files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
+% eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
+% files(fl).resp = sort(unique(RESP)); 
+% files(fl).tdiff = diff(files(fl).resp); 
+% files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
 
 fl = 24; % lots of 'unclear' breaths 
 files(fl).tag = 'pw03_307c';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
-eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
-files(fl).resp = sort(unique(RESP)); 
-files(fl).tdiff = diff(files(fl).resp); 
-files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
+% eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
+% files(fl).resp = sort(unique(RESP)); 
+% files(fl).tdiff = diff(files(fl).resp); 
+% files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
 
 fl = 25;
 files(fl).tag = 'pw03_308d';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
-eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp')); % run the resp code
-files(fl).resp = sort(unique(RESP)); 
-files(fl).tdiff = diff(files(fl).resp); 
-files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
+% eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
+% files(fl).resp = sort(unique(RESP)); 
+% files(fl).tdiff = diff(files(fl).resp); 
+% files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
 
 fl = 26;
-files(fl).tag = 'pw03_309b';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
-eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
-files(fl).resp = vertcat(RESP,Respafterlastdive); 
-files(fl).tdiff = diff(sort(vertcat(RESP,Respafterlastdive))); clear RESP Respafterlastdive
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
+% eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
+% files(fl).resp = sort(unique(RESP)); 
+% files(fl).tdiff = diff(files(fl).resp); 
+% files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
 
 fl = 27;
 files(fl).tag = 'pw03_309c';
-files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
+%files(fl).path = 'O:\ST_Bio-Kaskelot\van der Hoop Other BreathCounts\resps for julie\pwrespdata\';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
-eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
-files(fl).resp = sort(unique(RESP)); 
-files(fl).tdiff = diff(files(fl).resp); 
-files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
+% eval(strcat([files(fl).tag(1:2) files(fl).tag(6:9)],'resp;')) % run the resp code
+% files(fl).resp = sort(unique(RESP)); 
+% files(fl).tdiff = diff(files(fl).resp); 
+% files(fl).tdiff = files(fl).tdiff(find(files(fl).tdiff > th)); clear RESP RESPAURAL resp
 
 fl = 69; 
 files(fl).tag = 'pw04_295b';
@@ -398,14 +399,14 @@ files(fl).tag = 'pw08_110a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
 
 fl = 74; 
 files(fl).tag = 'pw08_113c';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = 'F';
 files(fl).lnth = NaN;
-files(fl).wt = 1000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 3600; % kg estimate, Jefferson et al. 1993
 
 
 %% sperm whales
@@ -840,28 +841,28 @@ files(fl).tag = 'mn07_203a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = NaN;
-files(fl).wt = 30000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 35700; % kg estimate, Lockyer 1976
 
 fl = 101; 
 files(fl).tag = 'mn12_178a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = NaN;
-files(fl).wt = 30000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 35700; % kg estimate, Lockyer 1976
 
 fl = 102; 
 files(fl).tag = 'mn12_184a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = NaN;
-files(fl).wt = 30000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 35700; % kg estimate, Lockyer 1976
 
 fl = 103; 
 files(fl).tag = 'mn12_185a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = NaN;
-files(fl).wt = 30000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 35700; % kg estimate, Lockyer 1976
 
 %% Minke whales ´- Paolo, Jeremy, Ari
 fl = 104; 
@@ -898,70 +899,70 @@ files(fl).tag = 'bw10_229b';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 109; 
 files(fl).tag = 'bw10_241a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 110; 
 files(fl).tag = 'bw14_212a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 111; 
 files(fl).tag = 'bw150823-6';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 112; 
 files(fl).tag = 'bw160727-10';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 113; 
 files(fl).tag = 'bw170619-36';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 114; 
 files(fl).tag = 'bw170813-44';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 115; 
 files(fl).tag = 'bw170814-40';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 116; 
 files(fl).tag = 'bw170814-51';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+ffiles(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 fl = 117; 
 files(fl).tag = 'bw20160717';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2500;
-files(fl).wt = 92000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 92600; % kg estimate, Lockyer 1976
 
 %% fin whales - Paolo, Jeremy
 fl = 118; 
@@ -969,56 +970,56 @@ files(fl).tag = 'bp160912';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 fl = 119; 
 files(fl).tag = 'bp13_258a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 fl = 120; 
 files(fl).tag = 'bp13_258b';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 fl = 121; 
 files(fl).tag = 'bp13_258c';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 fl = 122; 
 files(fl).tag = 'bp14_259a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 fl = 123; 
 files(fl).tag = 'bp15_079a';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 fl = 124; 
 files(fl).tag = 'bp160609-36';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 fl = 125; 
 files(fl).tag = 'bp170907-41b';
 files(fl).path = 'C:\tag\audit';
 files(fl).sex = '';
 files(fl).lnth = 2000;
-files(fl).wt = 52000; % kg estimate, Jefferson et al. 1993
+files(fl).wt = 52600; % kg estimate, Lockyer 1976
 
 %% grey whales - PS, JG, JC
 
@@ -1101,7 +1102,7 @@ for fl = 135:141
 files(fl).path = '/Users/julievanderhoop/Dropbox (Personal)/tag/audit';
 files(fl).sex = '';
 files(fl).lnth = NaN; % looking for age-length curve
-files(fl).wt = 300; % kg estimate
+files(fl).wt = 380; % kg estimate
 end
 
 %% ziphius - FV

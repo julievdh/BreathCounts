@@ -1,6 +1,6 @@
 # try ggjoy 
 library(ggplot2)
-library(ggjoy)
+library(ggridges)
 library(plyr)
 
 # 
@@ -14,7 +14,7 @@ library(plyr)
 IBI <- read.csv('JoyPlotBreathDatTest_export.csv') 
 colnames(IBI) <- c("weight","sppweight","IBI","spp","file","weightfile")
 
-# RBG to Hex for Colormap --  7 species
+# RBG to Hex for Colormap --  7 species -- CHANGE TO ALL SPP
 x <- c("68 1 84",
        "68 58 131",
        "49 104 142",
@@ -31,14 +31,14 @@ colnames(r2)<- c("weightfile","IBI")
 r1<-ddply(IBI, .(weightfile), summarize, median=median(IBI))
 colnames(r1)<- c("weightfile","IBI")
 
-png('JoyPlot_test.png', width = 8, height = 6, units = "in", res = 300)
-ggplot(IBI, aes(x = log10(IBI), y = as.factor(weightfile), fill = as.factor(spp))) +
- geom_joy(scale = 10) + theme_joy() +
-  scale_fill_cyclical(values = cmap) +  # get values for VERIDIS
- scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
- scale_x_continuous(limits = c(0, 4)) +      # for both axes to remove unneeded padding
-  labs(x="log(Inter Breath Interval) (sec)",y="Individual Weights")   
-dev.off()
+#png('JoyPlot_test.png', width = 8, height = 6, units = "in", res = 300)
+#ggplot(IBI, aes(x = log10(IBI), y = as.factor(weightfile), fill = as.factor(spp))) +
+# geom_joy(scale = 10) + theme_joy() +
+#  scale_fill_cyclical(values = cmap) +  # get values for VERIDIS
+# scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
+# scale_x_continuous(limits = c(0, 4)) +      # for both axes to remove unneeded padding
+#  labs(x="log(Inter Breath Interval) (sec)",y="Individual Weights")   
+#dev.off()
 
 # IBI$dive = c(2*60,5*60,45*60,20*60,3600,15*60,3600)
 r2<-ddply(IBI, .(spp), summarize, mean=mean(IBI))
@@ -80,8 +80,8 @@ r3<-ddply(gm11_148c, .(spp), summarize, mode=Mode(IBI))
 colnames(r3)<- c("spp","IBI")
 r3$IBI <- as.numeric(r3$IBI)
 
-ggplot(gm11_148c, aes(x = (IBI), y = as.factor(weight), fill = as.factor(spp))) +
-  geom_joy(scale = 10) + theme_joy() +
+ggplot(gm11_148c, aes(x = (IBI), y = weight, fill = spp, height = ..density..)) +
+  geom_density_ridges(scale = 10) +
   scale_fill_cyclical(values = cmap[5]) +  # get values for VERIDIS
   # geom_point(data=r2, cex = 2) +
   scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
@@ -90,12 +90,12 @@ ggplot(gm11_148c, aes(x = (IBI), y = as.factor(weight), fill = as.factor(spp))) 
   # geom_point(data=r3,shape = 22, cex = 2) + 
    labs(x="Inter Breath Interval (sec)",y="Individual Weights")   
 
-ggplot(gm11_148c, aes(x = log10(IBI), y = as.factor(weight), fill = as.factor(spp))) +
-  geom_joy(scale = 10) + theme_joy() +
-  scale_fill_cyclical(values = cmap[5]) +  # get values for VERIDIS
-  scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
-  scale_x_continuous(limits = c(0, 5)) +      # for both axes to remove unneeded padding
-  labs(x="log(Inter Breath Interval) (sec)",y="Individual Weights")   
+# ggplot(gm11_148c, aes(x = log10(IBI), y = as.factor(weight), fill = as.factor(spp))) +
+#  geom_joy(scale = 10) + theme_joy() +
+#  scale_fill_cyclical(values = cmap[5]) +  # get values for VERIDIS
+#  scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
+#  scale_x_continuous(limits = c(0, 5)) +      # for both axes to remove unneeded padding
+#  labs(x="log(Inter Breath Interval) (sec)",y="Individual Weights")   
 
 
 # load in other lit values
